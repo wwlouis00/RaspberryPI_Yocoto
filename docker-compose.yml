@@ -1,0 +1,16 @@
+
+services:
+  yocto-builder:
+    build: .
+    container_name: rpi-yocto-builder
+    volumes:
+      # 將 Windows 當前目錄下的 workdir 掛載到容器內
+      - ./project:/home/yocoto/
+    # 保持容器開啟，不會一執行完就退出
+    tty: true
+    stdin_open: true
+    # 這裡可以限制 CPU 和記憶體（選填，也可以在 Docker Desktop 設定）
+    deploy:
+      resources:
+        limits:
+          memory: 8G
